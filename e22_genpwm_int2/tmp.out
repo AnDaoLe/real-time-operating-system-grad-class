@@ -1,0 +1,3 @@
+?ASlink-Error-<cannot open> : "C:\Users\anle\Downloads\E22_GENPWM_INT2\e22_genpwm_int2\pwmint.rel"
++ c:\PROGRA~2\SDCC.300\bin\sdld.exe -nf "C:\Users\anle\Downloads\E22_GENPWM_INT2\e22_genpwm_int2\GENPWM_INT2.lnk"
++ c:\PROGRA~2\SDCC.300\bin\sdld.exe -nf "C:\Users\anle\Downloads\E22_GENPWM_INT2\e22_genpwm_int2\GENPWM_INT2.lnk" returned errorcode 1

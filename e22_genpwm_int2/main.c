@@ -1,0 +1,128 @@
+// Copyright (C) 2008-2015 Aleksander Malinowski
+
+#include "C8051F120.h"                  // Device-specific SFR Definitions
+#include "C8051F120_io.h"
+
+#include "bu_init.h"
+#include "bu_uart.h"
+#include "bu_com.h"
+#include "pwmint.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define BAUDRATE        (9600)          // Baud rate of UART in bps
+#define BUFLEN            (20)          // Maximum user buffer size
+#define SAMPLE_RATE    (50000L)         // Interrupt frequency in Hz - high to accommodate high range of PWM frequencies
+#define PWM_FREQUENCY   (1000)          // Interrupt frequency in Hz - high to accommodate high range of PWM frequencies
+#define PWM_RESOLUTION   (100)
+
+void main(void)
+{
+    char buffer[BUFLEN+1];
+	char error_count=0;
+	char 
+    unsigned char channel = 0;
+    unsigned long value;
+
+    // Disable watchdog timer
+    WDTCN = 0xde;
+    WDTCN = 0xad;
+
+    PORT_Init ();
+    SYSCLK_Init();
+    UART_Init(SYSCLK, 9600);
+
+    // using Timer4 as update scheduler initialize T4 to update DAC1 after (SYSCLK cycles)/sample have passed.
+    Timer4_PWM_Init (SYSCLK, SAMPLE_RATE);
+    EA = 1;
+	
+	//Timer4_PWM_SetOn(unsigned char channel, PWMstate newstate)
+     Timer4_PWM_SetOn(GLED, 1)
+	 Timer4_PWM_SetOn(RLED, 1)
+	while (1) {
+		while ((unsigned char)getchar() != 0xFF);
+			var[0]=(unsigned char)getchar();
+			var[1]=(unsigned char)getchar();
+			var[2]=(unsigned char)getchar();
+			var[3]=(unsigned char)getchar();
+
+        if (0xFF ^ var[0] ^ var[1] ^ var[2] ^ var[3]){}
+		else
+		{
+		Timer4_Reset;
+		}
+		
+    }
+
+}
+
+
+/* int main () {
+    initialize_digital_io();
+    setDigitalIO(..neutral..values..);
+    initialize_uarts(...);          // if needed
+    initialize_adc();               // if needed
+    initialize_pwm();               // if needed
+    pwm_set(..neutral_values..);    // if needed
+    initialize_timer(...);
+
+    error_count = 0;
+    initialize_watchdog(...);
+    global_enable_interrupts();
+    while(1) {
+        while ( wait_for_ready_from_ISR() )  ;
+        reset_ready_from_ISR();
+        reset_watchdog();
+
+        // capture OR/AND get captured data
+        var0 = get_data_captured_in_interrupts(0);
+        var1 = get_data_captured_in_interrupts(1);
+        ...
+        varN = get_data_captured_in_interrupts(N);
+
+        // perform computations as needed, avoid FLOATING POINT, try to stay INTEGER
+
+        // send processed data
+        putc(0); // send the header value or sequence of values
+        putc(var0);
+        putc(var0);
+        ...
+        putc(varN);
+        check = var0^var1^...^varN; // or use any other [more] decent checksum function
+        putc(check);
+        
+        if ( anything_received() ) {
+            // we will assume that all will be received soon
+            // if that cannot be assumed then use interrupt-based receive instead
+            while ( 0!= getc() ) ; // skip any data that were a reminder from the previous packet
+            rec0 = getc();
+            rec1 = getc();
+            ...
+            recM = getc();
+            check  = getc();
+            if ( 0 == rec0^rec1^...^recM^check ) {
+                error_count = 0;
+                // perform computations as needed, avoid FLOATING POINT, try to stay INTEGER
+                ..computed..values..compute..here..
+                setDigitalIO(..computed..values..);
+                setPWM(..computed..values..);
+            } else {
+                // skip erroneous data
+                if (error_count<max_error) {
+                    ++error_count;
+                } else {
+                    setDigitalIO(..neutral..values..);
+                    setPWM(..neutral..values..);
+                    error_count = 0;
+                }
+            }
+        }
+        
+        
+    }
+    
+    return(0);
+}
+ */
+

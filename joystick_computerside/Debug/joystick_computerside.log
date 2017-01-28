@@ -1,0 +1,13 @@
+﻿Build started 6/10/2016 11:12:58 AM.
+     1>Project "c:\Users\anle\documents\visual studio 2015\Projects\joystick_computerside\joystick_computerside\joystick_computerside.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt joystick.c
+         joystick.c
+     1>c:\users\anle\documents\visual studio 2015\projects\joystick_computerside\joystick_computerside\joystick.c(216): warning C4020: 'strlen': too many actual parameters
+     1>c:\users\anle\documents\visual studio 2015\projects\joystick_computerside\joystick_computerside\joystick.c(119): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+     1>Done Building Project "c:\Users\anle\documents\visual studio 2015\Projects\joystick_computerside\joystick_computerside\joystick_computerside.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.36
